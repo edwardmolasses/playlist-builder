@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useRef } from "react";
 import './App.css';
+import AppGrid from './AppGrid';
+import TitleBar from './TitleBar';
+import axios from "axios";
+import { useStateValue } from "./StateLib";
 
-function App() {
+export default function App() {
+  const [, changeSongLibraryDispatch] = useStateValue();
+  const [, changePlaylistsDispatch] = useStateValue();
+  const [, changeSelectedPlaylistIdDispatch] = useStateValue();
+  const isInitialMount = useRef(true);
+
+  const getSongLibrary = () => {
+    axios({
+      url: "library",
+      method: "get"
+    }).then(result => {
+      changeSongLibraryDispatch({
+        type: "changeSongLibrary",
+        newSongLibrary: result.data,
+      });
+    });
+  }
+  const getPlaylists = () => {
+    axios({
+      url: "playlist",
+      method: "get"
+    }).then(result => {
+      changePlaylistsDispatch({
+        type: "changePlaylists",
+        newPlaylists: result.data,
+      });
+      changeSelectedPlaylistIdDispatch({
+        type: "changeSelectedPlaylistId",
+        newSelectedPlaylistId: 0,
+      });
+    });
+  }
+
+	useEffect(() => {
+		if (isInitialMount.current) {
+      getSongLibrary();
+      getPlaylists();
+			isInitialMount.current = false;
+		} else {
+		}
+  });
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <TitleBar />
+        <AppGrid />
     </div>
   );
 }
-
-export default App;

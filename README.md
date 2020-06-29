@@ -1,68 +1,251 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Code Challenge By Andrew Lachkovics
+==========================
 
-## Available Scripts
 
-In the project directory, you can run:
+Andrew's Notes
+==========================
 
-### `npm start`
+Thank you for sending me the challenge, it was a nice little project. I added a few of my notes here.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Getting this running:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+* in main directory type: node server.js
+* also in main directory type: npm start
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Things I didn't have time for and would have like to complete:
 
-### `npm run build`
+* I used a third party infinite scrolling library for the list of library songs, which i didn't manage to get working correctly (it re-renders existing elements on scroll when i would like it to only render new elements as they come up in scrolling, resulting in lag as you scroll down)
+* Unit testing
+* Search (I added the search interface elements, but there's no functionality)
+* Validation for adding playlists
+* Changing playlist names feature
+* Remove playlist feature
+* Add missing proptypes or use typescript
+* Global error handling for server errors
+* Beautify scollbars on song lists
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+Playlist Challenge
+==========================
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+> Build a single page web application for creating playlists from a library of
+> songs!
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Included in this folder is a Node.js web server which includes an API and a
+skeleton for your browser-based playlist application.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The API includes endpoints to complete the challenge. You don't need to change,
+but you can if it helps.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The skeleton includes Bootstrap. Feel free to use any CSS or JavaScript
+frameworks your ❤️ desires.
 
-## Learn More
+To install and start the web server:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm install
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Features
+-----------------------------
 
-### Code Splitting
+Start by building out these features:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+1. Load the library of songs and show it in the browser.
+2. Add songs from the library to a playlist.
+3. Name and save a playlist.
+4. List saved playlists.
+5. Load saved playlists.
 
-### Analyzing the Bundle Size
+If you complete the above and still have time, try one of these, in no
+particular order:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+* Drag 'n Drop organization.
+* Search or filtering for songs.
+* Sorting songs by properties like album, artist or length.
 
-### Making a Progressive Web App
+You do **not** have to do any of the following:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+1. Play sounds! 🎵
+2. Deal with authentication. 🔐
+3. Work across browsers. Pick your favourite and get it working there. 🏄
 
-### Advanced Configuration
+*We reserve the right to ask you about how to implement them later 😀*
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
+API
+-------------------------------
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Everything from `/public/` is served at http://localhost:5000/.
 
-### `npm run build` fails to minify
+The API provides the following methods:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+`GET /library/`
+---------------
+
+Returns a JSON array of songs.
+
+Request:
+
+```bash
+curl http://localhost:5000/library/
+```
+
+Response:
+
+```json
+[
+    {
+        "id": 0,
+        "artist": "The Black Keys",
+        "album": "Brothers",
+        "title": "Everlasting Light",
+        "length": 203,
+        "track": 1
+    },
+    {
+        "id": 1,
+        "artist": "The Black Keys",
+        "album": "Brothers",
+        "title": "Next Girl",
+        "length": 198,
+        "track": 2
+    },
+    ...
+]
+```
+
+`GET /library/:id/`
+---------------------
+
+Returns a JSON object for a song with given `id`.
+
+Request:
+
+```bash
+curl http://localhost:5000/library/200/
+```
+
+Response:
+
+```json
+{
+  "album": "Nothing But The Beat",
+  "duration": 196,
+  "title": "Sweat (Snoop Dogg vs. David Guetta) [Remix]",
+  "id": 200,
+  "artist": "David Guetta"
+}
+```
+
+`GET /playlist/`
+---------------------
+
+Returns a JSON array of playlists.
+
+Request:
+
+```bash
+curl http://localhost:5000/playlist/
+```
+
+Response:
+
+```json
+[
+  {
+    "id": 0,
+    "name": "Ryan's Megamix",
+    "songs": [
+      20,
+      21,
+      56,
+      80,
+      99
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Ryan's Megamix 2",
+    "songs": [
+      20,
+      21,
+      56,
+      80,
+      99
+    ]
+  },
+  ...
+]
+```
+
+`GET /playlist/:id/`
+---------------------
+
+Returns a JSON object with the playlist with given `id`.
+
+Request:
+
+```bash
+curl http://localhost:5000/playlist/0/
+```
+
+Response:
+
+```json
+{
+    "id": 0,
+    "name": "Ryan's Megamix",
+    "songs": [
+        20,
+        21,
+        56,
+        80,
+        99
+    ]
+}
+```
+
+`POST /playlist/` or `POST /playlist/:id/`
+-------------------------------------------
+
+Saves a playlist and returns the id. May create a new playlist or override an
+old one.
+
+Request:
+
+```bash
+curl http://localhost:5000/playlist/ -X POST -d '{ "name": "Hi", "songs": [1,2,3,4]}' -H "Content-Type: application/json"
+```
+
+
+Response:
+
+```json
+{
+    "id": 100
+}
+```
+
+
+`DELETE /playlist/:id`
+-------------------------
+
+Deletes a playlist.
+
+Request:
+
+```bash
+curl http://localhost:5000/playlist/10/ -X DELETE
+```
+
+Response:
+
+```json
+{}
+```
