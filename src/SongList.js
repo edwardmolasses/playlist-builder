@@ -1,8 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import List from "@material-ui/core/List";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  emptyList: {
+    height: "500px"
+  }
+}));
 
 export default function SongList(props) {
+  const classes = useStyles();
   const isInitialMount = useRef(true);
   const [hasMore, setHasMore] = useState(true);
   const [items, setItems] = useState([]);
@@ -29,7 +37,7 @@ export default function SongList(props) {
   return (
     <React.Fragment>
       <List>
-          {!!props.songList.length && (
+          {!!props.songList.length ? (
             <InfiniteScroll
               dataLength={items.length}
               next={fetchMoreData}
@@ -53,6 +61,8 @@ export default function SongList(props) {
                 </React.Fragment>
               ))}
             </InfiniteScroll>
+          ) : (
+            <div className={classes.emptyList}></div>
           )}
       </List>
     </React.Fragment>
