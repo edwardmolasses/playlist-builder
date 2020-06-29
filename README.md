@@ -9,13 +9,14 @@ Thank you for sending me the challenge, it was a nice little project. I added a 
 
 Getting this running:
 
+* in main directory type: node install
 * in main directory type: node server.js
-* also in main directory type: npm start
+* in a new terminal also in main directory type: npm start
 
 
 Things I didn't have time for and would have like to complete:
 
-* I used a third party infinite scrolling library for the list of library songs, which i didn't manage to get working correctly (it re-renders existing elements on scroll when i would like it to only render new elements as they come up in scrolling, resulting in lag as you scroll down)
+* I used a third party infinite scrolling library for the list of library songs, which i didn't manage to get working correctly (it re-renders existing elements on scroll when i would like it to only render new elements as they come up in scrolling, resulting in lag as you scroll)
 * Unit testing
 * Search (I added the search interface elements, but there's no functionality)
 * Validation for adding playlists
