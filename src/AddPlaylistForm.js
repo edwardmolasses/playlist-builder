@@ -33,9 +33,6 @@ const useStyles = makeStyles((theme) => ({
     height: "56px",
     marginLeft: "10px",
     backgroundColor: "#737677",
-    '&:hover': {
-      backgroundColor: "#33a0ba"
-    },
     '& .MuiButton-label': {
       color: "white"
     },
@@ -50,7 +47,7 @@ export default function AddPlaylistForm(props) {
   const [playlistName, setPlaylistName] = React.useState('');
   const [{ playlists }, changePlaylistsDispatch] = useStateValue();
   const [, changeSelectedPlaylistIdDispatch] = useStateValue();
-  const [{ openAddPlaylistInput }, changeOpenAddPlaylistInputDispatch] = useStateValue();
+  const [, changeOpenAddPlaylistInputDispatch] = useStateValue();
 
   const handlePlaylistNameChange = (event, val) => {
     // TODO: add validation to this input
