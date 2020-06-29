@@ -8,6 +8,7 @@ Andrew's Notes
 Thank you for sending me the challenge, it was a nice little project. I added a few of my notes here.
 
 Getting this running:
+-----------------------------
 
 * in main directory type: node install
 * in main directory type: node server.js
@@ -15,6 +16,7 @@ Getting this running:
 
 
 Things I didn't have time for and would have like to complete:
+-----------------------------
 
 * I used a third party infinite scrolling library for the list of library songs, which i didn't manage to get working correctly (it re-renders existing elements on scroll when i would like it to only render new elements as they come up in scrolling, resulting in lag as you scroll)
 * Unit testing
@@ -22,7 +24,6 @@ Things I didn't have time for and would have like to complete:
 * Validation for adding playlists
 * Changing playlist names feature
 * Remove playlist feature
-* Add missing proptypes or use typescript
 * Global error handling for server errors
 * Beautify scollbars on song lists
 
