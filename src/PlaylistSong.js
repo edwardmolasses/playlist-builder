@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import Song from "./Song";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useStateValue } from "./StateLib";
@@ -34,3 +35,7 @@ export default function PlaylistSong(props) {
     <Song {...props} handleClick={removeSongFromPlaylist} songButton={<DeleteIcon />} />
   );
 }
+
+PlaylistSong.propTypes = {
+  id: PropTypes.number
+};

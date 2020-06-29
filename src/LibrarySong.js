@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import Song from './Song';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useStateValue } from "./StateLib";
@@ -34,3 +35,7 @@ export default function LibrarySong(props) {
     <Song {...props } handleClick={addSongToPlaylist} songButton={<AddCircleIcon />} />
   );
 }
+
+LibrarySong.propTypes = {
+  id: PropTypes.number
+};

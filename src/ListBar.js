@@ -108,4 +108,6 @@ export default function ListBar(props) {
 
 ListBar.propTypes = {
   title: PropTypes.string,
+  menuButton: PropTypes.object,
+  addPlaylistButton: PropTypes.object
 };

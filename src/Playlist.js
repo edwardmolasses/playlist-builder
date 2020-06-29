@@ -22,6 +22,6 @@ export default function Playlist(props) {
   }, []);
 
   return !!playlistSongs && (
-    <SongList {...props} songListItem={<PlaylistSong />} songList={playlistSongs} selectedPlaylist={selectedPlaylist} />
+    <SongList {...props} songListItem={<PlaylistSong />} songList={playlistSongs} />
   );
 }

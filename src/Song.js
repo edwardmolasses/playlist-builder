@@ -64,6 +64,7 @@ export default function Song(props) {
 
 Song.propTypes = {
   title: PropTypes.string,
+  duration: PropTypes.number,
   album: PropTypes.string,
   artist: PropTypes.string,
   songButton: PropTypes.object
