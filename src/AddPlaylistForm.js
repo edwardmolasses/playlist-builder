@@ -41,7 +41,6 @@ export default function AddPlaylistForm(props) {
   const handlePlaylistNameChange = (event, val) => {
     // TODO: add validation to this input
     if (event.target.value) {
-      // console.log(event.target.value);
       setPlaylistName(event.target.value);
     }
   }
@@ -53,7 +52,6 @@ export default function AddPlaylistForm(props) {
         method: "post",
         data: { "name": playlistName, "songs": emptyPlaylist },
       }).then((result) => {
-        console.log(result.data.id);
         if (result.data.id) {
           playlists.push({
             id: result.data.id,

@@ -11,8 +11,6 @@ export default function SongList(props) {
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
-    } else {
-      console.log("updating");
     }
     setItems(!!props.songList && props.songList.slice(0, fetchMoreNum));
   }, [props.songList]);
