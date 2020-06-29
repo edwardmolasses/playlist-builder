@@ -28,6 +28,20 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiButton-label': {
       color: "white"
     },
+  },
+  cancelButton: {
+    height: "56px",
+    marginLeft: "10px",
+    backgroundColor: "#737677",
+    '&:hover': {
+      backgroundColor: "#33a0ba"
+    },
+    '& .MuiButton-label': {
+      color: "white"
+    },
+    '&:hover': {
+      backgroundColor: "#a7a9aa"
+    },
   }
 }));
 
@@ -35,8 +49,8 @@ export default function AddPlaylistForm(props) {
   const classes = useStyles();
   const [playlistName, setPlaylistName] = React.useState('');
   const [{ playlists }, changePlaylistsDispatch] = useStateValue();
-  const [, changeOpenAddPlaylistInputDispatch] = useStateValue();
   const [, changeSelectedPlaylistIdDispatch] = useStateValue();
+  const [{ openAddPlaylistInput }, changeOpenAddPlaylistInputDispatch] = useStateValue();
 
   const handlePlaylistNameChange = (event, val) => {
     // TODO: add validation to this input
@@ -74,12 +88,21 @@ export default function AddPlaylistForm(props) {
       });
     }
   }
+  const handleCancel = () => {
+    changeOpenAddPlaylistInputDispatch({
+      type: "changeOpenAddPlaylistInput",
+      newOpenAddPlaylistInput: false,
+    });
+  }
 
   return (
     <form className={classes.addPlaylistInputContainer}>
       <TextField id="addPlaylist" label="Add Playlist" variant="outlined" className={classes.addPlaylistInput} onChange={handlePlaylistNameChange} />
       <Button variant="contained" color="primary" disableElevation onClick={handleAddPlaylist} className={classes.addPlaylistButton}>
         Add Playlist
+      </Button>
+      <Button variant="contained" disableElevation onClick={handleCancel} className={classes.cancelButton}>
+        Cancel
       </Button>
     </form>
   );
